@@ -128,14 +128,14 @@ const chartData = [
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "فروش",
   },
   desktop: {
-    label: "Desktop",
+    label: "کار ساخته",
     color: "var(--primary)",
   },
   mobile: {
-    label: "Mobile",
+    label: "آبشده",
     color: "var(--primary)",
   },
 } satisfies ChartConfig
@@ -167,27 +167,29 @@ export function ChartAreaInteractive() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Total Visitors</CardTitle>
+        <CardTitle>میزان فروش</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Total for the last 3 months
+            کارساخته و آبشده
           </span>
-          <span className="@[540px]/card:hidden">Last 3 months</span>
+          <span className="@[540px]/card:hidden">کارساخته و آبشده</span>
         </CardDescription>
         <CardAction>
           <ToggleGroup
+           dir="rtl"
             type="single"
             value={timeRange}
             onValueChange={setTimeRange}
             variant="outline"
             className="hidden *:data-[slot=toggle-group-item]:!px-4 @[767px]/card:flex"
           >
-            <ToggleGroupItem value="90d">Last 3 months</ToggleGroupItem>
-            <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
-            <ToggleGroupItem value="7d">Last 7 days</ToggleGroupItem>
+            <ToggleGroupItem dir="rtl" value="90d">3 ماه گذشته</ToggleGroupItem>
+            <ToggleGroupItem dir="rtl" value="30d">30 روز گذشته</ToggleGroupItem>
+            <ToggleGroupItem dir="rtl" value="7d">7 روز اخیر</ToggleGroupItem>
           </ToggleGroup>
           <Select value={timeRange} onValueChange={setTimeRange}>
             <SelectTrigger
+             dir="rtl"
               className="flex w-40 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate @[767px]/card:hidden"
               size="sm"
               aria-label="Select a value"
@@ -195,14 +197,14 @@ export function ChartAreaInteractive() {
               <SelectValue placeholder="Last 3 months" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
-              <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
+              <SelectItem dir="rtl" value="90d" className="rounded-lg">
+                3 ماه گذشته
               </SelectItem>
-              <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
+              <SelectItem dir="rtl" value="30d" className="rounded-lg">
+                30 روز گذشته
               </SelectItem>
-              <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
+              <SelectItem dir="rtl" value="7d" className="rounded-lg">
+                7 روز اخیر
               </SelectItem>
             </SelectContent>
           </Select>

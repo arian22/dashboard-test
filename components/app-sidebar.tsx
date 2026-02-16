@@ -2,15 +2,19 @@
 
 import * as React from "react"
 import {
+  IconUserCircle,
   IconCamera,
   IconChartBar,
-  IconDashboard,
+  IconCurrencyDollar,
+  IconFileFilled,
   IconDatabase,
   IconFileAi,
   IconFileDescription,
-  IconFileWord,
+  IconLayoutList,
   IconFolder,
+  IconFilePlus,
   IconHelp,
+  IconCircleFilled,
   IconInnerShadowTop,
   IconListDetails,
   IconReport,
@@ -35,35 +39,45 @@ import {
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Arian M",
+    email: "arian.m@gmail.com",
+    avatar: "/avatars/apple-touch-icon.png",
   },
   navMain: [
     {
-      title: "صفحه اصلی",
+      title: "دفتر روزنامه",
       url: "#",
-      icon: IconDashboard,
+      icon: IconReport,
     },
     {
-      title: "Lifecycle",
+      title: "ثبت سند",
+      url: "#",
+      icon: IconFilePlus,
+    },
+    {
+      title: "نمودار قیمت ها",
       url: "#",
       icon: IconListDetails,
     },
     {
-      title: "Analytics",
+      title: "گزارش ها",
       url: "#",
       icon: IconChartBar,
     },
     {
-      title: "Projects",
+      title: "تسک ها",
       url: "#",
       icon: IconFolder,
     },
     {
-      title: "Team",
+      title: "مدیران",
       url: "#",
       icon: IconUsers,
+    },
+    {
+      title: "کاربران",
+      url: "#",
+      icon: IconUserCircle,
     },
   ],
   navClouds: [
@@ -116,36 +130,41 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "تنظیمات",
       url: "#",
       icon: IconSettings,
     },
     {
-      title: "Get Help",
+      title: "پشتیبانی",
       url: "#",
       icon: IconHelp,
     },
     {
-      title: "Search",
+      title: "جستجو",
       url: "#",
       icon: IconSearch,
     },
   ],
   documents: [
     {
-      name: "Data Library",
+      name: "آبشده",
       url: "#",
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      name: "سکه",
       url: "#",
-      icon: IconReport,
+      icon: IconCircleFilled,
     },
     {
-      name: "Word Assistant",
+      name: "کار ساخته",
       url: "#",
-      icon: IconFileWord,
+      icon: IconLayoutList,
+    },
+    {
+      name: "ارز",
+      url: "#",
+      icon: IconCurrencyDollar,
     },
   ],
 }
@@ -162,7 +181,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+                <span className="text-base font-semibold">آرین مبرقعی</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

@@ -15,38 +15,20 @@ import {
 
 const DEFAULT_THEMES = [
   {
-    name: "Default",
-    value: "default",
-  },
-  {
-    name: "Blue",
-    value: "blue",
-  },
-  {
-    name: "Green",
-    value: "green",
-  },
-  {
-    name: "Amber",
-    value: "amber",
-  },
-]
-
-const SCALED_THEMES = [
-  {
-    name: "Default",
+    name: "پیش فرض",
     value: "default-scaled",
   },
   {
-    name: "Blue",
+    name: "آبی",
     value: "blue-scaled",
   },
-]
-
-const MONO_THEMES = [
   {
-    name: "Mono",
-    value: "mono-scaled",
+    name: "سبز",
+    value: "green-scaled",
+  },
+  {
+    name: "نارنجی",
+    value: "amber-scaled",
   },
 ]
 
@@ -54,7 +36,7 @@ export function ThemeSelector() {
   const { activeTheme, setActiveTheme } = useThemeConfig()
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2" dir="rtl">
       <Label htmlFor="theme-selector" className="sr-only">
         Theme
       </Label>
@@ -62,17 +44,12 @@ export function ThemeSelector() {
         <SelectTrigger
           id="theme-selector"
           size="sm"
-          className="justify-start *:data-[slot=select-value]:w-12"
-        >
-          <span className="text-muted-foreground hidden sm:block">
-            Select a theme:
-          </span>
-          <span className="text-muted-foreground block sm:hidden">Theme</span>
+          className="flex-row-reverse justify-between text-right *:data-[slot=select-value]:w-16">
           <SelectValue placeholder="Select a theme" />
         </SelectTrigger>
-        <SelectContent align="end">
+        <SelectContent side="bottom" align="start" dir="rtl">
           <SelectGroup>
-            <SelectLabel>Default</SelectLabel>
+            <SelectLabel>انتخاب رنگ</SelectLabel>
             {DEFAULT_THEMES.map((theme) => (
               <SelectItem key={theme.name} value={theme.value}>
                 {theme.name}
@@ -80,22 +57,6 @@ export function ThemeSelector() {
             ))}
           </SelectGroup>
           <SelectSeparator />
-          <SelectGroup>
-            <SelectLabel>Scaled</SelectLabel>
-            {SCALED_THEMES.map((theme) => (
-              <SelectItem key={theme.name} value={theme.value}>
-                {theme.name}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-          <SelectGroup>
-            <SelectLabel>Monospaced</SelectLabel>
-            {MONO_THEMES.map((theme) => (
-              <SelectItem key={theme.name} value={theme.value}>
-                {theme.name}
-              </SelectItem>
-            ))}
-          </SelectGroup>
         </SelectContent>
       </Select>
     </div>

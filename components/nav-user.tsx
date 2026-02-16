@@ -81,26 +81,26 @@ export function NavUser({
                   </span>
                 </div>
               </div>
-            </DropdownMenuLabel>
+            </DropdownMenuLabel >
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
+            <DropdownMenuGroup  dir="rtl">
               <DropdownMenuItem>
                 <IconUserCircle />
-                Account
+                حساب کاربری
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconCreditCard />
-                Billing
+                صورت حساب
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconNotification />
-                Notifications
+                اعلان ها
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem  dir="rtl">
               <IconLogout />
-              Log out
+              خروج
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

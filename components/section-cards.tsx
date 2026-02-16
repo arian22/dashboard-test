@@ -12,89 +12,94 @@ import {
 
 export function SectionCards() {
   return (
-    <div className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      <Card className="@container/card">
+    <div dir="rtl" className="*:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+      <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
-          <CardDescription>Total Revenue</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            $1,250.00
+          <CardDescription>بالانس گرمی</CardDescription>
+          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            7,276 gr
           </CardTitle>
           <CardAction>
-            <Badge variant="outline">
+            <Badge variant="outline" dir="ltr">
+              9.5%
               <IconTrendingUp />
-              +12.5%
             </Badge>
           </CardAction>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Trending up this month <IconTrendingUp className="size-4" />
+        <CardFooter className="flex flex-col items-end gap-1.5 text-sm text-right">
+          <div className="line-clamp-1 flex items-center justify-end gap-2 font-medium">
+            <IconTrendingUp className="size-4" />
+            حجم معاملات بیش از 2 کیلو نسبت به ماه گذشته
           </div>
           <div className="text-muted-foreground">
-            Visitors for the last 6 months
+            روند رشد پایدار
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
-          <CardDescription>New Customers</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            1,234
+          <CardDescription>بالانس ارزی</CardDescription>
+          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            51,234 $
           </CardTitle>
           <CardAction>
-            <Badge variant="outline">
-              <IconTrendingDown />
+            <Badge variant="outline" dir="ltr">
               -20%
+              <IconTrendingDown />
             </Badge>
           </CardAction>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Down 20% this period <IconTrendingDown className="size-4" />
+        <CardFooter className="flex flex-col items-end gap-1.5 text-sm text-right">
+          <div className="line-clamp-1 flex items-center justify-end gap-2 font-medium">
+            <IconTrendingDown className="size-4" />
+            کاهش 20 درصدی نسبت به ماه گذشته 
           </div>
           <div className="text-muted-foreground">
-            Acquisition needs attention
+            نیاز به بررسی و بهبود جریان ارزی
           </div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
-          <CardDescription>Active Accounts</CardDescription>
+          <CardDescription>بالانس ریالی</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            45,678
+            67.53 
+            <span className="text-muted-foreground text-xl"> میلیارد تومان</span>
           </CardTitle>
           <CardAction>
-            <Badge variant="outline">
+            <Badge variant="outline" dir="ltr">
+              12.5%
               <IconTrendingUp />
-              +12.5%
             </Badge>
           </CardAction>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Strong user retention <IconTrendingUp className="size-4" />
+        <CardFooter className="flex flex-col items-end gap-1.5 text-sm text-right">
+          <div className="line-clamp-1 flex items-center justify-end gap-2 font-medium">
+            <IconTrendingUp className="size-4" />
+            افزایش 12 درصدی نسبت به ماه گذشته
           </div>
-          <div className="text-muted-foreground">Engagement exceed targets</div>
+          <div className="text-muted-foreground">حفظ روند افزایشی درآمد ریالی</div>
         </CardFooter>
       </Card>
-      <Card className="@container/card">
+      <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
-          <CardDescription>Growth Rate</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            4.5%
+          <CardDescription>مجموع کل دارایی ها به دلار</CardDescription>
+          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            12,902,341 $
           </CardTitle>
           <CardAction>
-            <Badge variant="outline">
+            <Badge variant="outline" dir="ltr">
+              4.5%
               <IconTrendingUp />
-              +4.5%
             </Badge>
           </CardAction>
         </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Steady performance increase <IconTrendingUp className="size-4" />
+        <CardFooter className="flex flex-col items-end gap-1.5 text-sm text-right">
+          <div className="line-clamp-1 flex items-center justify-end gap-2 font-medium">
+            <IconTrendingUp className="size-4" />
+            افزایش تدریجی مجموع دارایی‌ها
           </div>
-          <div className="text-muted-foreground">Meets growth projections</div>
+          <div className="text-muted-foreground">حفظ روند صعودی سرمایه</div>
         </CardFooter>
       </Card>
     </div>
