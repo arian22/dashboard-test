@@ -529,6 +529,7 @@ export function DataTable({
             </div>
           </div>
         </div>
+        <div className="block md:hidden h-6" />
       </TabsContent>
       <TabsContent
         value="past-performance"
