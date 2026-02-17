@@ -16,7 +16,7 @@ export function SectionCards() {
       <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
           <CardDescription>بالانس گرمی</CardDescription>
-          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+          <CardTitle dir="ltr" className="text-2xl text-primary font-semibold tabular-nums @[250px]/card:text-2xl">
             7,276 gr
           </CardTitle>
           <CardAction>
@@ -39,7 +39,7 @@ export function SectionCards() {
       <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
           <CardDescription>بالانس ارزی</CardDescription>
-          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+          <CardTitle dir="ltr" className="text-2xl text-primary font-semibold tabular-nums @[250px]/card:text-2xl">
             51,234 $
           </CardTitle>
           <CardAction>
@@ -62,7 +62,7 @@ export function SectionCards() {
       <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
           <CardDescription>بالانس ریالی</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+          <CardTitle className="text-2xl text-primary font-semibold tabular-nums @[250px]/card:text-2xl">
             67.53 
             <span className="text-muted-foreground text-xl"> میلیارد تومان</span>
           </CardTitle>
@@ -84,7 +84,7 @@ export function SectionCards() {
       <Card className="@container/card text-right" dir="rtl">
         <CardHeader>
           <CardDescription>مجموع کل دارایی ها به دلار</CardDescription>
-          <CardTitle dir="ltr" className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+          <CardTitle dir="ltr" className="text-2xl text-primary font-semibold tabular-nums @[250px]/card:text-2xl">
             12,902,341 $
           </CardTitle>
           <CardAction>
