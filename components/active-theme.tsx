@@ -25,9 +25,16 @@ export function ActiveThemeProvider({
   initialTheme?: string
 }) {
   const [activeTheme, setActiveTheme] = useState<string>(
-    () => initialTheme || DEFAULT_THEME
+    initialTheme || DEFAULT_THEME
   )
 
+  if (typeof document !== "undefined") {
+    document.body.classList.add(`theme-${activeTheme}`)
+    if (activeTheme.endsWith("-scaled")) {
+      document.body.classList.add("theme-scaled")
+    }
+  }
+  
   useEffect(() => {
     Array.from(document.body.classList)
       .filter((className) => className.startsWith("theme-"))
