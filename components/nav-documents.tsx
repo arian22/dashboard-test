@@ -38,7 +38,7 @@ export function NavDocuments({
 
   return (
     <SidebarGroup dir="rtl" className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel className="text-right">موجودی ها</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-right">موجودی‌ ها</SidebarGroupLabel>
       <SidebarMenu className="space-y-1">
         {items.map((item) => (
           <SidebarMenuItem key={item.name} className="flex flex-row-reverse items-center justify-between">

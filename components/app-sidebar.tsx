@@ -6,7 +6,7 @@ import {
   IconCamera,
   IconChartBar,
   IconCurrencyDollar,
-  IconFileFilled,
+  IconDiamond,
   IconDatabase,
   IconFileAi,
   IconFileDescription,
@@ -147,9 +147,14 @@ const data = {
   ],
   documents: [
     {
-      name: "آبشده",
+      name: "جواهر",
       url: "#",
-      icon: IconDatabase,
+      icon: IconDiamond,
+    },
+    {
+      name: "کار ساخته",
+      url: "#",
+      icon: IconLayoutList,
     },
     {
       name: "سکه",
@@ -157,9 +162,9 @@ const data = {
       icon: IconCircleFilled,
     },
     {
-      name: "کار ساخته",
+      name: "آبشده",
       url: "#",
-      icon: IconLayoutList,
+      icon: IconDatabase,
     },
     {
       name: "ارز",
