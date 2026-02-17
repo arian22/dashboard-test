@@ -62,7 +62,6 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
   Drawer,
   DrawerClose,
@@ -115,12 +114,13 @@ export const schema = z.object({
   reviewer: z.string(),
 })
 
-// Create a separate component for the drag handle
-function DragHandle({ id }: { id: number }) {
-  const { attributes, listeners } = useSortable({
-    id,
-  })
-
+function DragHandle({
+  attributes,
+  listeners,
+}: {
+  attributes: React.HTMLAttributes<HTMLElement>
+  listeners: Record<string, any>
+}) {
   return (
     <Button
       {...attributes}
@@ -135,9 +135,55 @@ function DragHandle({ id }: { id: number }) {
   )
 }
 
+
 const getColumns = (
   onOpen: (item: z.infer<typeof schema>) => void
 ): ColumnDef<z.infer<typeof schema>>[] => [
+    {
+      id: "drag",
+      header: () => null,
+      cell: () => null,
+    },
+    // TYPE
+    {
+      accessorKey: "type",
+      header: "گروه",
+    },
+    // HEADER
+    {
+      accessorKey: "header",
+      header: "تسک",
+      enableHiding: false,
+      cell: ({ row }) => (
+        <div
+          className="cursor-pointer hover:underline"
+          onClick={() => onOpen(row.original)}
+        >
+          {row.original.header}
+        </div>
+      ),
+    },
+    // STATUS
+    {
+      accessorKey: "status",
+      header: "وضعیت",
+      cell: ({ row }) => {
+        const status = row.original.status
+
+        return (
+          <div dir="rtl" className="flex items-center gap-2">
+            {status === "انجام شده" && (
+              <IconCircleCheckFilled className="text-primary size-4" />
+            )}
+            <span>{status}</span>
+          </div>
+        )
+      },
+    },
+    {
+      accessorKey: "reviewer",
+      header: "مدیر",
+    },
     {
       id: "actions",
       header: () => null,
@@ -161,87 +207,6 @@ const getColumns = (
         </DropdownMenu>
       ),
     },
-
-    // REVIEWER
-    {
-      accessorKey: "reviewer",
-      header: "مدیر",
-    },
-
-
-
-
-    // STATUS
-    {
-      accessorKey: "status",
-      header: "وضعیت",
-      cell: ({ row }) => {
-        const status = row.original.status
-
-        return (
-          <div dir="rtl" className="flex items-center gap-2">
-            {status === "انجام شده" && (
-              <IconCircleCheckFilled className="text-primary size-4" />
-            )}
-            <span>{status}</span>
-          </div>
-        )
-      },
-    },
-
-    // TYPE
-    {
-      accessorKey: "type",
-      header: "گروه",
-    },
-
-    // HEADER
-    {
-      accessorKey: "header",
-      header: "تسک",
-      enableHiding: false,
-      cell: ({ row }) => (
-        <div
-          className="cursor-pointer hover:underline"
-          onClick={() => onOpen(row.original)}
-        >
-          {row.original.header}
-        </div>
-      ),
-    },
-
-    // SELECT CHECKBOX → RIGHT SIDE
-    {
-      id: "select",
-      header: ({ table }) => (
-        <div className="flex items-center justify-center">
-          <Checkbox
-            checked={
-              table.getIsAllPageRowsSelected() ||
-              (table.getIsSomePageRowsSelected() && "indeterminate")
-            }
-            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          />
-        </div>
-      ),
-      cell: ({ row }) => (
-        <div className="flex items-center justify-center">
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(value) => row.toggleSelected(!!value)}
-          />
-        </div>
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-
-    // DRAG HANDLE → FAR RIGHT
-    {
-      id: "drag",
-      header: () => null,
-      cell: ({ row }) => <DragHandle id={row.original.id} />,
-    },
   ]
 
 
@@ -252,9 +217,8 @@ function DraggableRow({
   row: Row<z.infer<typeof schema>>
   onOpen: (item: z.infer<typeof schema>) => void
 }) {
-  const { transform, transition, setNodeRef, isDragging } = useSortable({
-    id: row.original.id,
-  })
+  const { transform, transition, setNodeRef, isDragging, attributes, listeners } =
+    useSortable({ id: row.id })
 
   return (
     <TableRow
@@ -269,7 +233,11 @@ function DraggableRow({
     >
       {row.getVisibleCells().map((cell) => (
         <TableCell key={cell.id}>
-          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          {cell.column.id === "drag" ? (
+            <DragHandle attributes={attributes} listeners={listeners} />
+          ) : (
+            flexRender(cell.column.columnDef.cell, cell.getContext())
+          )}
         </TableCell>
       ))}
     </TableRow>
@@ -297,6 +265,8 @@ export function DataTable({
     pageSize: 10,
   })
   const sortableId = React.useId()
+  const scrollRef = React.useRef<HTMLDivElement>(null)
+  const dragScrollX = React.useRef(0)
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
@@ -304,13 +274,24 @@ export function DataTable({
   )
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
-    () => data?.map(({ id }) => id) || [],
+    () => data?.map(({ id }) => id.toString()) || [],
     [data]
   )
 
+  const openRow = React.useCallback((item: z.infer<typeof schema>) => {
+    const el = scrollRef.current
+    const x = el?.scrollLeft ?? 0
+
+    setActiveRow(item)
+
+    requestAnimationFrame(() => {
+      if (el) el.scrollLeft = x
+    })
+  }, [])
+
   const table = useReactTable({
     data,
-    columns: getColumns(setActiveRow),
+    columns: getColumns(openRow),
     state: {
       sorting,
       columnVisibility,
@@ -335,14 +316,16 @@ export function DataTable({
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event
-    if (active && over && active.id !== over.id) {
-      setData((data) => {
-        const oldIndex = dataIds.indexOf(active.id)
-        const newIndex = dataIds.indexOf(over.id)
-        return arrayMove(data, oldIndex, newIndex)
-      })
-    }
+    if (!active || !over || active.id === over.id) return
+
+    setData((items) => {
+      const ids = items.map((i) => i.id)
+      const oldIndex = ids.indexOf(Number(active.id))
+      const newIndex = ids.indexOf(Number(over.id))
+      return arrayMove(items, oldIndex, newIndex)
+    })
   }
+
   if (!mounted) return null
   return (
     <Tabs
@@ -400,17 +383,29 @@ export function DataTable({
         </div>
       </div>
       <TabsContent
+        ref={scrollRef}
         value="outline"
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
+
         <div className="overflow-hidden rounded-lg border">
           <DndContext
             collisionDetection={closestCenter}
             modifiers={[restrictToVerticalAxis]}
-            onDragEnd={handleDragEnd}
+            onDragStart={() => {
+              dragScrollX.current = scrollRef.current?.scrollLeft ?? 0
+            }}
+            onDragEnd={(e) => {
+              handleDragEnd(e)
+              requestAnimationFrame(() => {
+                const el = scrollRef.current
+                if (el) el.scrollLeft = dragScrollX.current
+              })
+            }}
             sensors={sensors}
             id={sortableId}
           >
+
             <Table>
               <TableHeader className="bg-muted sticky top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
@@ -443,7 +438,7 @@ export function DataTable({
                 ) : (
                   <TableRow>
                     <TableCell
-                      colSpan={getColumns(() => {}).length}
+                      colSpan={getColumns(() => { }).length}
                       className="h-24 text-center"
                     >
                       No results.

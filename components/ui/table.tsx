@@ -5,27 +5,9 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 function Table({ className, ...props }: React.ComponentProps<"table">) {
-  const containerRef = React.useRef<HTMLDivElement>(null)
-
-  React.useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-
-    const scrollRight = () => {
-      el.scrollLeft = el.scrollWidth
-    }
-
-    scrollRight()
-
-    const observer = new ResizeObserver(scrollRight)
-    observer.observe(el)
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <div
-      ref={containerRef}
+      dir="rtl"
       data-slot="table-container"
       className="relative w-full overflow-x-auto"
     >
@@ -37,6 +19,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     </div>
   )
 }
+
 
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
