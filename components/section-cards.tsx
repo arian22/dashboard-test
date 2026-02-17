@@ -63,7 +63,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>بالانس ریالی</CardDescription>
           <CardTitle className="text-2xl text-primary font-semibold tabular-nums @[250px]/card:text-2xl">
-            67.53 
+            67.530 
             <span className="text-muted-foreground text-xl"> میلیارد تومان</span>
           </CardTitle>
           <CardAction>
