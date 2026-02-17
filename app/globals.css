@@ -212,12 +212,12 @@ body {
 
 .theme-purple,
 .theme-purple-scaled {
-  --primary: var(--color-chart-4-600);
-  --primary-foreground: var(--color-chart-4-50);
+  --primary: #9333ea;
+  --primary-foreground: #faf5ff;
 
   @variant dark {
-    --primary: var(--color-chart-4-500);
-    --primary-foreground: var(--color-chart-4-50);
+    --primary: #a855f7;
+    --primary-foreground: #faf5ff;
   }
 }
 
