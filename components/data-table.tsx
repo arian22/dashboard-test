@@ -118,8 +118,8 @@ function DragHandle({
   attributes,
   listeners,
 }: {
-  attributes: React.HTMLAttributes<HTMLElement>
-  listeners: Record<string, any>
+  attributes?: React.HTMLAttributes<HTMLElement>
+  listeners?: Record<string, any>
 }) {
   return (
     <Button
@@ -134,7 +134,6 @@ function DragHandle({
     </Button>
   )
 }
-
 
 const getColumns = (
   onOpen: (item: z.infer<typeof schema>) => void
