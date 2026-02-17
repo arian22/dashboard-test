@@ -199,6 +199,28 @@ body {
   }
 }
 
+.theme-red,
+.theme-red-scaled {
+  --primary: var(--color-red-600);
+  --primary-foreground: var(--color-red-50);
+
+  @variant dark {
+    --primary: var(--color-red-500);
+    --primary-foreground: var(--color-red-50);
+  }
+}
+
+.theme-purple,
+.theme-purple-scaled {
+  --primary: var(--color-chart-4-600);
+  --primary-foreground: var(--color-chart-4-50);
+
+  @variant dark {
+    --primary: var(--color-chart-4-500);
+    --primary-foreground: var(--color-chart-4-50);
+  }
+}
+
 .theme-green,
 .theme-green-scaled {
   --primary: var(--color-green-600);

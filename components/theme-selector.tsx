@@ -27,8 +27,16 @@ const DEFAULT_THEMES = [
     value: "green-scaled",
   },
   {
+    name: "بنفش",
+    value: "purple-scaled",
+  },
+  {
     name: "نارنجی",
     value: "amber-scaled",
+  },
+  {
+    name: "قرمز",
+    value: "red-scaled",
   },
 ]
 
@@ -56,7 +64,6 @@ export function ThemeSelector() {
               </SelectItem>
             ))}
           </SelectGroup>
-          <SelectSeparator />
         </SelectContent>
       </Select>
     </div>
